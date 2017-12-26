@@ -23,17 +23,22 @@ public class HardJobIntentService extends IntentService {
     isDestroyed = false;
     showToast("Starting IntentService");
     try {
+      //pretend to do the hard work
       for (int i = 0; i <= 100 && !isDestroyed; i++) {
         Thread.sleep(100);
-        Intent broadcastIntent =
-            new Intent(MainActivity.BackgroundProgressReceiver.PROGRESS_UPDATE_ACTION);
-        broadcastIntent.putExtra(MainActivity.BackgroundProgressReceiver.PROGRESS_VALUE_KEY, i);
-        sendBroadcast(broadcastIntent);
+        //TODO call for notifyUI method to pass progress to UI
       }
     } catch (InterruptedException e) {
       Thread.currentThread().interrupt();
     }
     showToast("Finishing IntentService");
+  }
+
+  private void notifyUI(int progress) {
+    Intent broadcastIntent =
+        new Intent(MainActivity.BackgroundProgressReceiver.PROGRESS_UPDATE_ACTION);
+    broadcastIntent.putExtra(MainActivity.BackgroundProgressReceiver.PROGRESS_VALUE_KEY, progress);
+    sendBroadcast(broadcastIntent);
   }
 
   protected void showToast(final String msg) {

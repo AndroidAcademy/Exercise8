@@ -20,14 +20,18 @@ public class HardJobService extends Service {
   }
 
   @Override public void onCreate() {
-    // To avoid cpu-blocking, we create a background handler to run our service
-    HandlerThread thread = new HandlerThread("HardJobService", Process.THREAD_PRIORITY_BACKGROUND);
-    // start the new handler thread
-    thread.start();
 
-    mServiceLooper = thread.getLooper();
+    // To avoid cpu-blocking, we create a background handler to run our service
+    //TODO Create HandlerThread
+
+    // start the new handler thread
+    //TODO Start a created HandlerThread
+
+
+    //TODO Get looper out of thread
+
     // start the service using the background handler
-    mServiceHandler = new ServiceHandler(mServiceLooper);
+    //TODO Create instance of ServiceHandler class that receives instance of ServiceLooper
   }
 
   @Override public int onStartCommand(Intent intent, int flags, int startId) {
@@ -36,9 +40,11 @@ public class HardJobService extends Service {
     // call a new service handler. The service ID can be used to identify the service
     Message message = mServiceHandler.obtainMessage();
     message.arg1 = startId;
-    mServiceHandler.sendMessage(message);
 
-    return START_STICKY;
+    //TODO Send message to SericeHandler
+
+
+    //TODO Return START_STICKY
   }
 
   protected void showToast(final String msg) {
@@ -70,10 +76,9 @@ public class HardJobService extends Service {
       // Add your cpu-blocking activity here
       try {
         for (int i = 0; i <= 100 && !isDestroyed; i++) {
+          //DOING Very hard job
           Thread.sleep(100);
-          Intent intent = new Intent(BackgroundProgressReceiver.PROGRESS_UPDATE_ACTION);
-          intent.putExtra(BackgroundProgressReceiver.PROGRESS_VALUE_KEY, i);
-          sendBroadcast(intent);
+          notifyU(i);
         }
       } catch (InterruptedException e) {
         Thread.currentThread().interrupt();
@@ -83,6 +88,12 @@ public class HardJobService extends Service {
       // so we can track the running sevice here.
       stopSelf(msg.arg1);
     }
+  }
+
+  private void notifyU(int progress) {
+    Intent intent = new Intent(BackgroundProgressReceiver.PROGRESS_UPDATE_ACTION);
+    intent.putExtra(BackgroundProgressReceiver.PROGRESS_VALUE_KEY, progress);
+    sendBroadcast(intent);
   }
 
   @Override public void onDestroy() {

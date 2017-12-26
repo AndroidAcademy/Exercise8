@@ -22,32 +22,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
-    progressValue = findViewById(R.id.tv_progress_value);
-    findViewById(R.id.btn_start_service).setOnClickListener(this);
-    findViewById(R.id.btn_start_intent_service).setOnClickListener(this);
+    //TODO find reference to progress TextView
+
+    //TODO Add listeners for two buttons
+
     subscribeForProgressUpdates();
   }
 
   @Override public void onClick(View v) {
-    switch (v.getId()) {
-      case R.id.btn_start_service:
-        if (isIntentServiceStarted) {
-          stopService(new Intent(this, HardJobIntentService.class));
-          isIntentServiceStarted = false;
-        }
-        isServiceStarted = true;
-        startService(new Intent(this, HardJobService.class));
-        break;
-      case R.id.btn_start_intent_service:
-        if (isServiceStarted) {
-          stopService(new Intent(this, HardJobService.class));
-          isServiceStarted = false;
-        }
-
-        isIntentServiceStarted = true;
-        startService(new Intent(this, HardJobIntentService.class));
-        break;
-    }
+    //TODO implement clicks on two buttons
   }
 
   private void subscribeForProgressUpdates() {
