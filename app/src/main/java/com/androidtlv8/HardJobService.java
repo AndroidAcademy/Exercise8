@@ -1,4 +1,4 @@
-package academy.android.androidinbackground;
+package com.androidtlv8;
 
 import com.androidtlv8.MainActivity.BackgroundProgressReceiver;
 import android.app.Service;

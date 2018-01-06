@@ -1,4 +1,4 @@
-package academy.android.androidinbackground;
+package com.androidtlv8;
 
 import android.app.IntentService;
 import android.content.Intent;
@@ -6,8 +6,6 @@ import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.widget.Toast;
-
-import com.androidtlv8.*;
 
 public class HardJobIntentService extends IntentService {
 
@@ -40,8 +38,8 @@ public class HardJobIntentService extends IntentService {
 
     private void notifyUI(int progress) {
         Intent broadcastIntent =
-                new Intent(com.androidtlv8.MainActivity.BackgroundProgressReceiver.PROGRESS_UPDATE_ACTION);
-        broadcastIntent.putExtra(com.androidtlv8.MainActivity.BackgroundProgressReceiver.PROGRESS_VALUE_KEY, progress);
+                new Intent(MainActivity.BackgroundProgressReceiver.PROGRESS_UPDATE_ACTION);
+        broadcastIntent.putExtra(MainActivity.BackgroundProgressReceiver.PROGRESS_VALUE_KEY, progress);
         sendBroadcast(broadcastIntent);
     }
 

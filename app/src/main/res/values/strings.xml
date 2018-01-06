@@ -1,6 +1,3 @@
 <resources>
-  <string name="app_name">AndroidInBackground</string>
-  <string name="start_service">Start Service</string>
-  <string name="start_intent_service">Start IntentService</string>
-  <string name="the_progress">The progress</string>
+    <string name="app_name">AndroidTLV8</string>
 </resources>
