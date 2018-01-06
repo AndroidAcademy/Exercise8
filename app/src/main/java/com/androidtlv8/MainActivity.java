@@ -1,4 +1,4 @@
-package academy.android.androidinbackground;
+package com.androidtlv8;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -9,10 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
-import com.androidtlv8.*;
-import com.androidtlv8.HardJobIntentService;
-
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -45,15 +41,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.btn_service:
                 if (isIntentServiceStarted) {
-                    stopService(new Intent(this, com.androidtlv8.HardJobIntentService.class));
+                    stopService(new Intent(this, HardJobIntentService.class));
                     isIntentServiceStarted = false;
                 }
                 isServiceStarted = true;
-                startService(new Intent(this, com.androidtlv8.HardJobService.class));
+                startService(new Intent(this, HardJobService.class));
                 break;
             case R.id.btn_intent_service:
                 if (isServiceStarted) {
-                    stopService(new Intent(this, com.androidtlv8.HardJobService.class));
+                    stopService(new Intent(this, HardJobService.class));
                     isServiceStarted = false;
                 }
 
